@@ -7,6 +7,8 @@ import ar.com.grupoesfera.main.App;
 
 public class BaseDeLibros {
 
+
+
     @SuppressWarnings("unchecked")
     public List<Libro> obtenerTodos() {
         
