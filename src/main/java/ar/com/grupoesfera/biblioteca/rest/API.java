@@ -116,8 +116,11 @@ public class API {
     @Produces(MediaType.APPLICATION_JSON)
     public Response prestar(@QueryParam("idLibro") Long idLibro, @QueryParam("idUsuario") Long idUsuario) {
         Prestamo prestamo1 = Prestamo.nuevo().conIdLibro(idLibro).conIdUsuario(idUsuario);
-
-        saveEntity(prestamo1);
+        try{
+            saveEntity(prestamo1);
+        }catch (Exception exception){
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
 
         return Response.ok(prestamos.obtenerTodos()).build();
     }
