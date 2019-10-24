@@ -1,5 +1,6 @@
 package ar.com.grupoesfera.biblioteca.repo;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import ar.com.grupoesfera.biblioteca.modelo.Libro;
@@ -11,10 +12,24 @@ public class BaseDeLibros extends Base {
         super(app);
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Libro> obtenerLibrosAutor (String autor){
+        return App.instancia().obtenerEntityManager().createQuery("SELECT l FROM Libro l WHERE l.autor = :autor")
+                .setParameter("autor", autor)
+                .getResultList();
+    }
 
     @SuppressWarnings("unchecked")
     public List<Libro> obtenerTodos() {
         
         return app.obtenerEntityManager().createQuery("select l from Libro l").getResultList();
+    }
+    public Libro obtenerLibroPorId(Long id){
+
+        List<Libro> libros = this.obtenerTodos();
+        return libros.stream().filter(p -> p.getId().equals(id)).findAny().orElse(null);
+
+
+
     }
 }
