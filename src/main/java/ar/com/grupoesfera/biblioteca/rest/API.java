@@ -21,12 +21,12 @@ public class API {
 	private BaseDeUsuarios usuarios = App.instancia().obtenerRepoUsuarios();
 	private BaseDeLibros libros = App.instancia().obtenerRepoLibros();
 	private BaseDePrestamos prestamos = App.instancia().obtenerRepoPrestamos();
-	
+
     @GET
     @Path("/hola")
     @Produces(MediaType.TEXT_PLAIN)
     public Response hola() {
-        
+
         return Response.ok("Hola, mundo!").build();
     }
 
@@ -51,7 +51,7 @@ public class API {
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerLibrosPorAutor(@PathParam("autor") String autor) {
         
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        return Response.ok(libros.obtenerLibrosAutor(autor)).build();
     }
     @GET
     @Path("/libros/titulo/{titulo}")
