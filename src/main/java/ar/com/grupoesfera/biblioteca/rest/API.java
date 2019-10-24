@@ -21,9 +21,9 @@ import ar.com.grupoesfera.main.App;
 @Path("/")
 public class API {
 
-    private BaseDeUsuarios usuarios = App.instancia().obtenerRepoUsuarios();
-    private BaseDeLibros libros = App.instancia().obtenerRepoLibros();
-    private BaseDePrestamos prestamos = App.instancia().obtenerRepoPrestamos();
+	private BaseDeUsuarios usuarios = App.instancia().obtenerRepoUsuarios();
+	private BaseDeLibros libros = App.instancia().obtenerRepoLibros();
+	private BaseDePrestamos prestamos = App.instancia().obtenerRepoPrestamos();
 
     @GET
     @Path("/hola")
@@ -53,8 +53,8 @@ public class API {
     @Path("/libros/autor/{autor}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerLibrosPorAutor(@PathParam("autor") String autor) {
-
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        
+        return Response.ok(libros.obtenerLibrosAutor(autor)).build();
     }
 
     @GET

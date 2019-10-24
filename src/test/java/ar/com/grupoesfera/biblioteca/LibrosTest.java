@@ -17,10 +17,6 @@ public class LibrosTest {
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("biblioteca");
     private BaseDeLibros libros = App.instancia(factory).obtenerRepoLibros();
 
-    @Before
-    public void agregarDatos() {
-        Fixture.initData();
-    }
 
     @After
     public void eliminarDatos() {
@@ -32,5 +28,18 @@ public class LibrosTest {
         Fixture.initData();
     }
 
+    @Test
+    public void autorJezHumbleTieneDosLibros(){
+        Assert.assertEquals(2, libros.obtenerLibrosAutor("Jez Humble").size());
+    }
 
+    @Test
+    public void noDebeDevolverNingunLibroSiAutorDesconocido(){
+        Assert.assertEquals(0,libros.obtenerLibrosAutor("Nahuel Pascual").size());
+    }
+
+    @Test
+    public void debeDevolverLibroCorrrecto(){
+        Assert.assertEquals("Design patterns",libros.obtenerLibrosAutor("Erich Gamma").get(0).getTitulo());
+    }
 }
