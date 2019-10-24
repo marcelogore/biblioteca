@@ -31,7 +31,7 @@ public class App extends Application {
 	 * @return
 	 */
 	public static App instancia() {
-		if(instancia==null)
+		if(proveedorPersistencia==null)
 			proveedorPersistencia = Persistence.createEntityManagerFactory("biblioteca");
 		return instancia;
 	}
