@@ -46,7 +46,7 @@ public class API {
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerLibroPorId(@PathParam("id") Long id) {
 
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        return Response.ok(libros.obtenerLibroPorId(id)).build();
     }
 
     @GET
