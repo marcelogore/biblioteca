@@ -16,18 +16,32 @@ import ar.com.grupoesfera.biblioteca.rest.API;
 public class App extends Application {
 
 	private static final App instancia = new App();
-	private static EntityManagerFactory proveedorPersistencia = Persistence.createEntityManagerFactory("biblioteca");
+	private static EntityManagerFactory proveedorPersistencia ;
 
-	private BaseDeUsuarios usuarios = new BaseDeUsuarios();
-	private BaseDeLibros libros = new BaseDeLibros();
-	private BaseDePrestamos prestamos = new BaseDePrestamos();
+	private BaseDeUsuarios usuarios = new BaseDeUsuarios(this);
+	private BaseDeLibros libros = new BaseDeLibros(this);
+	private BaseDePrestamos prestamos = new BaseDePrestamos(this);
 
 	private App() {
 
 	}
 
+	/**
+	 * Genera instancias de App para PRODUCCION
+	 * @return
+	 */
 	public static App instancia() {
+		proveedorPersistencia = Persistence.createEntityManagerFactory("biblioteca");
+		return instancia;
+	}
 
+	/**
+	 * Genera instancias de App para TEST
+	 * @param emf
+	 * @return
+	 */
+	public static App instancia(EntityManagerFactory emf) {
+		proveedorPersistencia = emf;
 		return instancia;
 	}
 
