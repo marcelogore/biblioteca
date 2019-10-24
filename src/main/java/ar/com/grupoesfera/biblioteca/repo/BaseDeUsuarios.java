@@ -6,6 +6,8 @@ import java.util.List;
 import ar.com.grupoesfera.biblioteca.modelo.Usuario;
 import ar.com.grupoesfera.main.App;
 
+import javax.persistence.NoResultException;
+
 public class BaseDeUsuarios extends Base {
 
     public BaseDeUsuarios(App app){
@@ -23,6 +25,6 @@ public class BaseDeUsuarios extends Base {
     }
 
     public Usuario obtenerUsuarioId(Long id) throws NoResultException {
-        return (Usuario) App.instancia().obtenerEntityManager().createQuery("SELECT u from Usuario u where u.id = " + id    ).getSingleResult();
+        return (Usuario) App.instancia().obtenerEntityManager().createQuery("SELECT u from Usuario u where u.id = " + id).getSingleResult();
     }
 }
