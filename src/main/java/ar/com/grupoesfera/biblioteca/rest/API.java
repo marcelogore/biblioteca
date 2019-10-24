@@ -105,7 +105,7 @@ public class API {
     @Path("/prestamos")
     @Produces(MediaType.APPLICATION_JSON)
     public Response prestar(@QueryParam("idLibro") Long idLibro, @QueryParam("idUsuario") Long idUsuario) {
-        
+        System.out.println("idLibro: "+idLibro.toString()+"\tidUsuario: "+idUsuario.toString());
         return Response.status(Status.NOT_IMPLEMENTED).build();
     }
 

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import ar.com.grupoesfera.biblioteca.modelo.Prestamo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -61,7 +62,10 @@ public class Fixture {
             entities.close();
         }
     }
-
+    private static void insertarPrestamo(Prestamo prestamo){
+        
+        Prestamo prestamo1=prestamo.conId(prestamo.getId()).conIdLibro(prestamo.getIdLibro()).conIdUsuario(prestamo.getIdUsuario());
+    }
     private static void crearDatos(EntityManager entities) {
 
         Usuario marcelo = Usuario.nuevo().conId(1L).conNombre("Marcelo");
