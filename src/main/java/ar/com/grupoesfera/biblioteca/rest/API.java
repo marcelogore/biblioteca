@@ -108,7 +108,6 @@ public class API {
     @Path("/prestamos")
     @Produces(MediaType.APPLICATION_JSON)
     public Response prestar(@QueryParam("idLibro") Long idLibro, @QueryParam("idUsuario") Long idUsuario) {
-        System.out.println("idLibro: "+idLibro.toString()+"\tidUsuario: "+idUsuario.toString());
         Prestamo prestamo1 = Prestamo.nuevo().conIdLibro(idLibro).conIdUsuario(idUsuario);
 
         saveEntity(prestamo1);

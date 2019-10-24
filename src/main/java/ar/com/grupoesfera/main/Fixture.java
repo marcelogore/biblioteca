@@ -62,10 +62,7 @@ public class Fixture {
             entities.close();
         }
     }
-    private static void insertarPrestamo(Prestamo prestamo){
-        
-        Prestamo prestamo1=prestamo.conId(prestamo.getId()).conIdLibro(prestamo.getIdLibro()).conIdUsuario(prestamo.getIdUsuario());
-    }
+
     private static void crearDatos(EntityManager entities) {
 
         Usuario marcelo = Usuario.nuevo().conId(1L).conNombre("Marcelo");
