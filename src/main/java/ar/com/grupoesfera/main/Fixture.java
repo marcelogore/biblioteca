@@ -93,10 +93,11 @@ public class Fixture {
         
         persistirSiEsPosible(entities, continuousDelivery, designPatterns, growingOOSoftware, pojoInAction, tdd, devopsHandbook);
 
-        Prestamo prestamo1 = Prestamo.nuevo().conId(1L).conIdLibro(1L).conIdUsuario(1L);
-        Prestamo prestamo2 = Prestamo.nuevo().conId(2L).conIdLibro(2L).conIdUsuario(1L);
-        Prestamo prestamo3 = Prestamo.nuevo().conId(3L).conIdLibro(1L).conIdUsuario(2L);
-        Prestamo prestamo4 = Prestamo.nuevo().conId(4L).conIdLibro(3L).conIdUsuario(2L);
+        Prestamo prestamo1 = Prestamo.nuevo().conIdLibro(1L).conIdUsuario(1L);
+        Prestamo prestamo2 = Prestamo.nuevo().conIdLibro(2L).conIdUsuario(1L);
+        Prestamo prestamo3 = Prestamo.nuevo().conIdLibro(1L).conIdUsuario(2L);
+        Prestamo prestamo4 = Prestamo.nuevo().conIdLibro(3L).conIdUsuario(2L);
+
         persistirSiEsPosible(entities,prestamo1,prestamo2,prestamo3,prestamo4);
     }
     

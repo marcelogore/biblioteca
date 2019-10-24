@@ -1,5 +1,7 @@
 package ar.com.grupoesfera.biblioteca.rest;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -10,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import ar.com.grupoesfera.biblioteca.modelo.Prestamo;
 import ar.com.grupoesfera.biblioteca.repo.BaseDeLibros;
 import ar.com.grupoesfera.biblioteca.repo.BaseDePrestamos;
 import ar.com.grupoesfera.biblioteca.repo.BaseDeUsuarios;
@@ -106,7 +109,11 @@ public class API {
     @Produces(MediaType.APPLICATION_JSON)
     public Response prestar(@QueryParam("idLibro") Long idLibro, @QueryParam("idUsuario") Long idUsuario) {
         System.out.println("idLibro: "+idLibro.toString()+"\tidUsuario: "+idUsuario.toString());
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        Prestamo prestamo1 = Prestamo.nuevo().conIdLibro(idLibro).conIdUsuario(idUsuario);
+
+        saveEntity(prestamo1);
+
+        return Response.ok(prestamos.obtenerTodos()).build();
     }
 
     @GET
@@ -115,5 +122,29 @@ public class API {
     public Response obtenerPrestamoPorId(@PathParam("id") Long idPrestamo) {
         return Response.ok(prestamos.obtenerPrestamoPorId(idPrestamo)).build();
 
+    }
+
+    private void saveEntity(Object entidad) {
+
+        EntityManager entities = App.instancia().obtenerEntityManager();
+        EntityTransaction transaccion = entities.getTransaction();
+
+        try {
+
+            transaccion.begin();
+
+            entities.persist(entidad);
+
+            transaccion.commit();
+
+        } catch (Exception e) {
+
+            System.out.println("Falló la transacción"+e.toString());
+            transaccion.rollback();
+
+        } finally {
+
+            entities.close();
+        }
     }
 }
