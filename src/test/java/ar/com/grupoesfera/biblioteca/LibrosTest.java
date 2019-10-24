@@ -32,9 +32,5 @@ public class LibrosTest {
         Fixture.initData();
     }
 
-    @Test
-    public void autorJezHumbleTieneDosLibros(){
-        Assert.assertEquals(2, libros.obtenerLibrosAutor("Jez Humble").size());
-    }
 
 }
