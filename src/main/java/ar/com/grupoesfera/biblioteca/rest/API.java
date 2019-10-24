@@ -62,6 +62,7 @@ public class API {
     public Response obtenerLibrosPorTitulo(@PathParam("titulo") String titulo) {
 
         return Response.ok(libros.obtenerTituloLibro(titulo)).build();
+
     }
 
     @GET
