@@ -1,22 +1,19 @@
 package ar.com.grupoesfera.biblioteca.repo;
 
-import ar.com.grupoesfera.biblioteca.modelo.Libro;
 import ar.com.grupoesfera.biblioteca.modelo.Prestamo;
-import ar.com.grupoesfera.biblioteca.modelo.Usuario;
 import ar.com.grupoesfera.main.App;
 import ar.com.grupoesfera.main.Fixture;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
-import static org.junit.Assert.*;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class BaseDePrestamosTest {
 
-    BaseDePrestamos baseDePrestamos = new BaseDePrestamos();
+    private EntityManagerFactory factory = Persistence.createEntityManagerFactory("biblioteca");
+    BaseDePrestamos baseDePrestamos = App.instancia(factory).obtenerRepoPrestamos();
 
     @Before
     public void init(){
