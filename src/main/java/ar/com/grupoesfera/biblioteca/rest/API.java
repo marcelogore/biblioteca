@@ -113,7 +113,7 @@ public class API {
     @Path("/prestamos/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerPrestamoPorId(@PathParam("id") Long idPrestamo) {
-        
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        return Response.ok(prestamos.obtenerPrestamoPorId(idPrestamo)).build();
+
     }
 }
