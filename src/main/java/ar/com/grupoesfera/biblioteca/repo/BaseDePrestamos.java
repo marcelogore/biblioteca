@@ -16,4 +16,12 @@ public class BaseDePrestamos extends Base {
         
         return app.obtenerEntityManager().createQuery("select p from Prestamo p").getResultList();
     }
+
+    public Prestamo obtenerPrestamoPorId(Long id){
+
+        List<Prestamo> prestamos = obtenerTodos();
+        return prestamos.stream().filter( a -> a.getId().equals(id)).findAny().orElse(null);
+
+    }
+
 }
