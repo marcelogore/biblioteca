@@ -22,12 +22,19 @@ public class BaseDeLibros extends Base {
 
     @SuppressWarnings("unchecked")
     public Libro obtenerTituloLibro(String tituloLibro) {
+        Libro libro = new Libro();
 
         Query query =  app.obtenerEntityManager().createQuery("select l from Libro l where l.titulo = :tituloLibro")
                 .setParameter("tituloLibro", tituloLibro);
 
         List<Libro> listaLibros = query.getResultList();
 
-        return listaLibros.get(0);
+        if(!listaLibros.isEmpty()){
+            libro = listaLibros.get(0);
+        } else {
+            libro = null;
+        }
+
+        return libro;
     }
 }

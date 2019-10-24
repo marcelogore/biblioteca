@@ -1,5 +1,6 @@
 package ar.com.grupoesfera.biblioteca;
 
+import ar.com.grupoesfera.biblioteca.modelo.Libro;
 import ar.com.grupoesfera.biblioteca.repo.BaseDeLibros;
 import ar.com.grupoesfera.biblioteca.repo.BaseDeUsuarios;
 import ar.com.grupoesfera.main.App;
@@ -9,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.enterprise.inject.Stereotype;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -31,6 +33,14 @@ public class LibrosTest {
     public void init(){
         Fixture.initData();
     }
+
+    @Test
+    public void obtenerLibroPorTitulo(){
+        Libro libro = libros.obtenerTituloLibro("Continuous delivery");
+
+        Assert.assertNotNull(libro);
+    }
+
 
 
 }
