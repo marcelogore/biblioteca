@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import ar.com.grupoesfera.biblioteca.modelo.Prestamo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -61,7 +62,10 @@ public class Fixture {
             entities.close();
         }
     }
-
+    private static void insertarPrestamo(Prestamo prestamo){
+        
+        Prestamo prestamo1=prestamo.conId(prestamo.getId()).conIdLibro(prestamo.getIdLibro()).conIdUsuario(prestamo.getIdUsuario());
+    }
     private static void crearDatos(EntityManager entities) {
 
         Usuario marcelo = Usuario.nuevo().conId(1L).conNombre("Marcelo");
@@ -88,6 +92,13 @@ public class Fixture {
         		.conAutor("Jez Humble").conEditorial("IT Revolution Press");
         
         persistirSiEsPosible(entities, continuousDelivery, designPatterns, growingOOSoftware, pojoInAction, tdd, devopsHandbook);
+
+        Prestamo prestamo1 = Prestamo.nuevo().conIdLibro(1L).conIdUsuario(1L);
+        Prestamo prestamo2 = Prestamo.nuevo().conIdLibro(2L).conIdUsuario(1L);
+        Prestamo prestamo3 = Prestamo.nuevo().conIdLibro(1L).conIdUsuario(2L);
+        Prestamo prestamo4 = Prestamo.nuevo().conIdLibro(3L).conIdUsuario(2L);
+
+        persistirSiEsPosible(entities,prestamo1,prestamo2,prestamo3,prestamo4);
     }
     
     private static void persistirSiEsPosible(EntityManager entities, Object... entidades) {
