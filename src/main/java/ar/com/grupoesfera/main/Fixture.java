@@ -65,13 +65,13 @@ public class Fixture {
 
     private static void crearDatos(EntityManager entities) {
 
-        Usuario marcelo = Usuario.nuevo().conId(1L).conNombre("Marcelo");
-        Usuario brenda = Usuario.nuevo().conId(2L).conNombre("Brenda");
-        Usuario india = Usuario.nuevo().conId(3L).conNombre("India");
-        Usuario leon = Usuario.nuevo().conId(4L).conNombre("Leon");
-        Usuario sebastian = Usuario.nuevo().conId(5L).conNombre("Sebastian");
-        Usuario alejandro = Usuario.nuevo().conId(6L).conNombre("Alejandro");
-        Usuario santiago = Usuario.nuevo().conId(7L).conNombre("Santiago");
+        Usuario marcelo = Usuario.nuevo().conId(1L).conNombre("Marcelo").conDNI(1000L);
+        Usuario brenda = Usuario.nuevo().conId(2L).conNombre("Brenda").conDNI(2000L);
+        Usuario india = Usuario.nuevo().conId(3L).conNombre("India").conDNI(3000L);
+        Usuario leon = Usuario.nuevo().conId(4L).conNombre("Leon").conDNI(4000L);
+        Usuario sebastian = Usuario.nuevo().conId(5L).conNombre("Sebastian").conDNI(5000L);
+        Usuario alejandro = Usuario.nuevo().conId(6L).conNombre("Alejandro").conDNI(6000L);
+        Usuario santiago = Usuario.nuevo().conId(7L).conNombre("Santiago").conDNI(7000L);
 
         persistirSiEsPosible(entities, marcelo, brenda, india, leon, sebastian, alejandro, santiago);
         

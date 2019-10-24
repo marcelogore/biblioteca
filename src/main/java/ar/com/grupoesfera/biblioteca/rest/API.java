@@ -21,15 +21,15 @@ import ar.com.grupoesfera.main.App;
 @Path("/")
 public class API {
 
-	private BaseDeUsuarios usuarios = App.instancia().obtenerRepoUsuarios();
-	private BaseDeLibros libros = App.instancia().obtenerRepoLibros();
-	private BaseDePrestamos prestamos = App.instancia().obtenerRepoPrestamos();
-	
+    private BaseDeUsuarios usuarios = App.instancia().obtenerRepoUsuarios();
+    private BaseDeLibros libros = App.instancia().obtenerRepoLibros();
+    private BaseDePrestamos prestamos = App.instancia().obtenerRepoPrestamos();
+
     @GET
     @Path("/hola")
     @Produces(MediaType.TEXT_PLAIN)
     public Response hola() {
-        
+
         return Response.ok("Hola, mundo!").build();
     }
 
@@ -37,7 +37,7 @@ public class API {
     @Path("/libros")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerLibros() {
-        
+
         return Response.ok(libros.obtenerTodos()).build();
     }
 
@@ -45,7 +45,7 @@ public class API {
     @Path("/libros/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerLibroPorId(@PathParam("id") Long id) {
-        
+
         return Response.status(Status.NOT_IMPLEMENTED).build();
     }
 
@@ -53,14 +53,15 @@ public class API {
     @Path("/libros/autor/{autor}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerLibrosPorAutor(@PathParam("autor") String autor) {
-        
+
         return Response.status(Status.NOT_IMPLEMENTED).build();
     }
+
     @GET
     @Path("/libros/titulo/{titulo}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerLibrosPorTitulo(@PathParam("titulo") Long titulo) {
-        
+
         return Response.status(Status.NOT_IMPLEMENTED).build();
     }
 
@@ -68,7 +69,7 @@ public class API {
     @Path("/usuarios")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerUsuarios() {
-        
+
         return Response.ok(usuarios.obtenerTodos()).build();
     }
 
@@ -76,23 +77,29 @@ public class API {
     @Path("/usuarios/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerUsuarioPorId(@PathParam("id") Long idUsuario) {
-        
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        try {
+            return Response.ok(usuarios.obtenerUsuarioId(idUsuario)).build();
+        } catch(Exception e) {
+            return Response.status(Status.NOT_FOUND).build();
+        }
     }
 
     @GET
     @Path("/usuarios/dni/{dni}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerUsuarioPorDNI(@PathParam("dni") Long dni) {
-        
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        try {
+            return Response.ok(usuarios.obtenerUsuarioDNI(dni)).build();
+        } catch(Exception e) {
+            return Response.status(Status.NOT_FOUND).build();
+        }
     }
 
     @GET
     @Path("/usuarios/{id}/prestamos")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerLibrosPrestadosAUsuario(@PathParam("id") Long idUsuario) {
-        
+
         return Response.status(Status.NOT_IMPLEMENTED).build();
     }
 
@@ -100,7 +107,7 @@ public class API {
     @Path("/prestamos")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerPrestamos() {
-        
+
         return Response.ok(prestamos.obtenerTodos()).build();
     }
 

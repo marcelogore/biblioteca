@@ -9,6 +9,7 @@ public class Usuario {
 
     @Id private Long id;
     @Column private String nombre;
+    @Column private Long dni;
     
     public Long getId() {
 
@@ -46,7 +47,21 @@ public class Usuario {
         setNombre(nombre);
         return this;
     }
-    
+
+    public Usuario conDNI(Long dni) {
+
+        setDni(dni);
+        return this;
+    }
+
+    public Long getDni() {
+        return dni;
+    }
+
+    public void setDni(Long dni) {
+        this.dni = dni;
+    }
+
     @Override
     public int hashCode() {
 
